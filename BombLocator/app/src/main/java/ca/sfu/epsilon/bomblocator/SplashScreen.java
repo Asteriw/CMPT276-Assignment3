@@ -10,8 +10,6 @@ import static ca.sfu.epsilon.bomblocator.R.id.btnLaunchGame;
 
 public class SplashScreen extends AppCompatActivity {
 
-    final int REQUEST_CODE_NEWGAME = 666;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,12 +19,12 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void setupStartButton() {
-        Button startAddPot = (Button) findViewById(btnLaunchGame);
-            startAddPot.setOnClickListener(new View.OnClickListener() {
+        Button startMenu = (Button) findViewById(btnLaunchGame);
+            startMenu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent mainMenuIntent = MainMenu.makeIntent(SplashScreen.this);
-                    startActivityForResult(mainMenuIntent, REQUEST_CODE_NEWGAME);
+                    startActivity(mainMenuIntent);
                 }
             });
     }
