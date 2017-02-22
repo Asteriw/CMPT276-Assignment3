@@ -30,6 +30,7 @@ public class SplashScreen extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent mainMenuIntent = MainMenu.makeIntent(SplashScreen.this);
                     startActivity(mainMenuIntent);
+                    SplashScreen.this.finish();
                 }
             });
     }
