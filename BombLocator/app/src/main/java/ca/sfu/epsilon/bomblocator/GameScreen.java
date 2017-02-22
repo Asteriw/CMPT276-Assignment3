@@ -71,6 +71,9 @@ public class GameScreen extends AppCompatActivity {
         for(i=0;i<rows;i++){
             for(j=0;j<cols;j++) {
                 totalArray[i][j] = rowTotals[i] + colTotals[j];
+                if (mineArray[i][j] == 1){
+                    totalArray[i][j]--;
+                }
             }
         }
     }
