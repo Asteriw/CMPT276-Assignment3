@@ -71,10 +71,10 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:text="@string/save_options"
+        android:text="@string/back_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/savebutton"
+        android:id="@+id/backbutton"
         android:layout_alignBaseline="@+id/BoardSize"
         android:layout_alignBottom="@+id/BoardSize"
         android:layout_alignLeft="@+id/resetbutton"
