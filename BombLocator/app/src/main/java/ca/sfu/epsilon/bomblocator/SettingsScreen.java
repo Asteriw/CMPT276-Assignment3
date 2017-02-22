@@ -28,7 +28,7 @@ public class SettingsScreen extends AppCompatActivity {
 
         setupSpinners();
         setupReset();
-        setupSaveButton();
+        setupBackButton();
     }
 
     private void setupSpinners() {
@@ -64,12 +64,12 @@ public class SettingsScreen extends AppCompatActivity {
         });
     }
 
-    private void setupSaveButton() {
+    private void setupBackButton() {
         Button backButton = (Button) findViewById(R.id.backbutton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Settings", "It should have saved the options.");
+                SettingsScreen.this.finish();
             }
         });
     }
