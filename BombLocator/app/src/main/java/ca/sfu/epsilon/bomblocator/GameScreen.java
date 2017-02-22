@@ -21,7 +21,6 @@ public class GameScreen extends AppCompatActivity {
     int mineCount = 12;
     int[][] mineArray = new int[rows][cols];
     int[][] totalArray = new int[rows][cols];
-    Random rand;
 
 
     @Override
