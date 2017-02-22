@@ -1,34 +1,55 @@
 package ca.sfu.epsilon.bomblocator;
 
-import java.util.Random;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 public class GameScreen extends AppCompatActivity {
-
-
-
 
     private static final String SHAREDPREF_SET = "BombLocator";
     private static final int SHAREDPREF_ITEM_HIGHSCORE = 100;
     private static final int SHAREDPREF_ITEM_GRIDSIZE = 24;
 
-    int rows = 4;
-    int cols = 6;
-    int mineCount = 12;
-    int[][] mineArray = new int[rows][cols];
-    int[][] totalArray = new int[rows][cols];
+    private final int ROWS = 4;
+    private final int COLS = 6;
+    private final int MINE_COUNT = 12;
+    int[][] mineArray = new int[ROWS][COLS];
+    int[][] totalArray = new int[ROWS][COLS];
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
-
+        setupButtons();
         setupArrays();
+    }
+
+    private void setupButtons() {
+        TableLayout table = (TableLayout) findViewById(R.id.gameTable);
+        for(int i = 0; i< ROWS; i++){
+            TableRow tableRow = new TableRow(this);
+            tableRow.setLayoutParams(new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    1.0f
+                ));
+            table.addView(tableRow);
+            for (int j = 0; j< COLS; j++){
+                Button button = new Button(this);
+                button.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.MATCH_PARENT,
+                        TableRow.LayoutParams.MATCH_PARENT,
+                        1.0f
+                ));
+                tableRow.addView(button);
+            }
+        }
     }
 
     private void setupArrays() {
@@ -52,24 +73,24 @@ public class GameScreen extends AppCompatActivity {
         int i = 0;
         int j = 0;
         int temp = 0;
-        int[] rowTotals = new int[rows];
-        int[] colTotals = new int[cols];
-        for(i=0;i<rows;i++){
+        int[] rowTotals = new int[ROWS];
+        int[] colTotals = new int[COLS];
+        for(i=0;i<ROWS;i++){
             temp = 0;
-            for(j=0;j<cols;j++) {
+            for(j=0;j<COLS;j++) {
                 temp = temp + mineArray[i][j];
             }
             rowTotals[i] = temp;
         }
-        for(i=0;i<cols;i++){
+        for(i=0;i<COLS;i++){
             temp = 0;
-            for(j=0;j<rows;j++) {
+            for(j=0;j<ROWS;j++) {
                 temp = temp + mineArray[j][i];
             }
             colTotals[i] = temp;
         }
-        for(i=0;i<rows;i++){
-            for(j=0;j<cols;j++) {
+        for(i=0;i<ROWS;i++){
+            for(j=0;j<COLS;j++) {
                 totalArray[i][j] = rowTotals[i] + colTotals[j];
                 if (mineArray[i][j] == 1){
                     totalArray[i][j]--;
@@ -82,9 +103,9 @@ public class GameScreen extends AppCompatActivity {
         int arrayCol = 0;
         int arrayRow = 0;
         int i = 0;
-        while(i<mineCount){
-            arrayRow = (int )(Math.random()*rows);
-            arrayCol = (int )(Math.random()*cols);
+        while(i<MINE_COUNT){
+            arrayRow = (int )(Math.random()*ROWS);
+            arrayCol = (int )(Math.random()*COLS);
             if (mineArray[arrayRow][arrayCol] == 0){
                 mineArray[arrayRow][arrayCol] = 1;
                 i++;
