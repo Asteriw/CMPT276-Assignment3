@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -29,9 +31,9 @@ public class GameScreen extends AppCompatActivity {
     private final int MINE_COUNT = 12;
     MineArray mineArray = new MineArray(ROWS, COLS);
     TotalArray totalArray = new TotalArray(ROWS, COLS);
+    ClickedArray clickedArray = new ClickedArray(ROWS, COLS);
     Button[][] buttonArray = new Button[ROWS][COLS];
-    //TextView defuserAmount = (TextView) findViewById(R.id.defuserField);
-    //TextView highScoreTV = (TextView) findViewById(R.id.scoreField);;
+
 
     int scans = 0;
     final int highScore = SHAREDPREF_ITEM_HIGHSCORE;
@@ -40,15 +42,18 @@ public class GameScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
+
         setupArrays();
         setupButtons();
-       // setupTextViews();
+        updateTextViews();
     }
 
-   // private void setupTextViews() {
-   //     defuserAmount.setText(scans);
-   //     highScoreTV.setText(highScore);
-   // }
+    private void  updateTextViews() {
+        TextView defuserAmount = (TextView) findViewById(R.id.defuserField);
+        TextView highScoreTV = (TextView) findViewById(R.id.scoreField);
+        defuserAmount.setText(String.valueOf(scans));
+        highScoreTV.setText(String.valueOf(highScore));
+    }
 
     private void setupButtons() {
         TableLayout table = (TableLayout) findViewById(R.id.gameTable);
@@ -85,18 +90,33 @@ public class GameScreen extends AppCompatActivity {
     private void buttonClicked(int row, int col) {
         //lock button sizes
         lockButtonSizes();
+        Button button = buttonArray[row][col];
         if(mineArray.getValue(row,col) == 1){
-            Button button = buttonArray[row][col];
             int tempWidth = button.getWidth();
             int tempHeight = button.getHeight();
             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), ca.sfu.epsilon.bomblocator.R.mipmap.bomb);
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, tempWidth, tempHeight, true);
             Resources resource = getResources();
             button.setBackground(new BitmapDrawable(resource, scaledBitmap));
+            updateTotalArray();
+            if (clickedArray.getValue(row, col) == 1){
+                button.setText(String.valueOf(totalArray.getValue(row,col)));
+                button.setTextColor(Color.parseColor("#DDDDDD"));
+            } else {
+                clickedArray.setValue(row, col, 1);
+            }
         } else {
-            scans++;
-            //defuserAmount.setText(scans);
+            if (clickedArray.getValue(row, col) == 0){
+                clickedArray.setValue(row, col, 1);
+                scans++;
+                updateTextViews();
+                button.setText(String.valueOf(totalArray.getValue(row,col)));
+            }
         }
+    }
+
+    private void updateTotalArray() {
+
     }
 
     private void lockButtonSizes() {
@@ -118,7 +138,12 @@ public class GameScreen extends AppCompatActivity {
     private void setupArrays() {
         setupMineArray();
         setupTotalsArray(mineArray);
+        setupClickedArray();
         printArrays();
+    }
+
+    private void setupClickedArray() {
+
     }
 
     private void printArrays() {
