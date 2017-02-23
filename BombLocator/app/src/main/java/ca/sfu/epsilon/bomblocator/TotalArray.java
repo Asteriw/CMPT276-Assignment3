@@ -47,7 +47,6 @@ public class TotalArray {
         }
     }
 
-
     public int getValue(int row, int col){
         return totalArray[row][col];
     }

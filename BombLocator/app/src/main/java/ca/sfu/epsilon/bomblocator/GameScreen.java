@@ -9,16 +9,11 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import static ca.sfu.epsilon.bomblocator.R.mipmap.bomb;
 
 public class GameScreen extends AppCompatActivity {
 
@@ -28,7 +23,7 @@ public class GameScreen extends AppCompatActivity {
 
     private final int ROWS = 4;
     private final int COLS = 6;
-    private final int MINE_COUNT = 12;
+    int mineCount = 12;
     MineArray mineArray = new MineArray(ROWS, COLS);
     TotalArray totalArray = new TotalArray(ROWS, COLS);
     ClickedArray clickedArray = new ClickedArray(ROWS, COLS);
@@ -62,7 +57,7 @@ public class GameScreen extends AppCompatActivity {
             tableRow.setLayoutParams(new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
                     TableLayout.LayoutParams.MATCH_PARENT,
-                    2.0f
+                    1.0f
                 ));
             table.addView(tableRow);
             for (int j = 0; j< COLS; j++){
@@ -98,12 +93,13 @@ public class GameScreen extends AppCompatActivity {
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, tempWidth, tempHeight, true);
             Resources resource = getResources();
             button.setBackground(new BitmapDrawable(resource, scaledBitmap));
-            updateTotalArray();
-            if (clickedArray.getValue(row, col) == 1){
-                button.setText(String.valueOf(totalArray.getValue(row,col)));
-                button.setTextColor(Color.parseColor("#DDDDDD"));
-            } else {
-                clickedArray.setValue(row, col, 1);
+            mineArray.setValue(row, col, 0);
+            mineCount--;
+            totalArray.populateTotalArray(mineArray);
+            updateClickedText();
+            clickedArray.setValue(row, col, 2);
+            if (mineCount == 0){//ends the game when all mines found
+                finish();
             }
         } else {
             if (clickedArray.getValue(row, col) == 0){
@@ -111,12 +107,28 @@ public class GameScreen extends AppCompatActivity {
                 scans++;
                 updateTextViews();
                 button.setText(String.valueOf(totalArray.getValue(row,col)));
+            } else if (clickedArray.getValue(row, col) == 2){//Already displayed
+                scans++;
+                updateTextViews();
+                clickedArray.setValue(row, col, 1);
+                updateButtonText(row, col, button);
+                button.setTextColor(Color.parseColor("#DDDDDD"));
             }
         }
     }
 
-    private void updateTotalArray() {
+    private void updateClickedText() {
+        for(int i = 0; i< ROWS; i++){
+            for(int j = 0; j<COLS; j++){
+                if (clickedArray.getValue(i, j) == 1){
+                    updateButtonText(i, j, buttonArray[i][j]);
+                }
+            }
+        }
+    }
 
+    private void updateButtonText(int row, int col, Button button) {
+        button.setText(String.valueOf(totalArray.getValue(row,col)));
     }
 
     private void lockButtonSizes() {
@@ -156,7 +168,7 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void setupMineArray() {
-        mineArray.populateMineArray(MINE_COUNT);
+        mineArray.populateMineArray(mineCount);
     }
 
     public static Intent makeIntent(Context context) {
