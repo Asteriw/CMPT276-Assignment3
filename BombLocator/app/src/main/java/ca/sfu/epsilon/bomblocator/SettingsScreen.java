@@ -35,6 +35,9 @@ public class SettingsScreen extends AppCompatActivity {
         setupBackButton();
     }
 
+    //setupSpinners creates the two dropdown menus, reading values off of string arrays located in the strings.xml.
+    // When an item is selected, the spinners call their own SpinnerListener(function described below).
+    //.setSelection makes the spinners display the value at the specified "size/mines" position.
     private void setupSpinners() {
         Spinner BSizeSpinner = (Spinner) findViewById(R.id.BSizeSpinner);
         ArrayAdapter<CharSequence> BSizeAdapter = ArrayAdapter.createFromResource(this, R.array.board_sizes, android.R.layout.simple_spinner_item);
@@ -51,6 +54,7 @@ public class SettingsScreen extends AppCompatActivity {
         MineNumSpinner.setSelection(mines);
     }
 
+    //A reset button, that, when clicked, brings up an alert dialog with a yes/no choice.
     public void setupReset() {
         Button resetButton = (Button) findViewById(R.id.resetbutton);
         resetButton.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +73,7 @@ public class SettingsScreen extends AppCompatActivity {
             }
         });
     }
-
+    
     private void setupBackButton() {
         Button backButton = (Button) findViewById(R.id.backbutton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +84,10 @@ public class SettingsScreen extends AppCompatActivity {
         });
     }
 
+    //The SpinnerListeners are called when the user clicks on a spinner and selects a value.
+    //When the Settings activity first launches, the "initial" variables stop the Listeners from changing the default values of size and mines.
+    //The "initial" variables are what allow the spinners to change the default values displayed on the spinners.
+    //After the initial setup, later calls on SpinnerListeners will change the size and mines variables and save them, thus changing the game settings.
     private class SpinnerListener1 implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
