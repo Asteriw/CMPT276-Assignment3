@@ -12,7 +12,7 @@
     <string name="back_options">Back</string>
     <string name="save_options">Save Options</string>
     <string name="highscore">Highscore:</string>
-    <string name="remote_defusers_used">Remote Defusers Used:</string>
+    <string name="remote_defusers_used">Area Scans Used:</string>
     <string-array name="board_sizes">
         <item>4 x 6</item>
         <item>5 x 10</item>
