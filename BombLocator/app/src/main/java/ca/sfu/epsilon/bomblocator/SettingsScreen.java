@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +17,10 @@ import android.widget.Spinner;
 public class SettingsScreen extends AppCompatActivity {
 
     private static final String SHAREDPREF_SET = "BombLocator";
-    private static final int SHAREDPREF_ITEM_HIGHSCORE = 100;
-    private static final int SHAREDPREF_ITEM_GRIDSIZE = 24;
+    private static final String SHAREDPREF_ITEM_HIGHSCORE = "HighScore";
+    private static final String SHAREDPREF_ITEM_GRIDWIDTH = "GridWidth";
+    private static final String SHAREDPREF_ITEM_GRIDHEIGHT = "GridHeight";
+    private static final String SHAREDPREF_ITEM_MINECOUNT = "MineCount";
 
     int size = 2;
     int mines = 3;
@@ -78,9 +81,19 @@ public class SettingsScreen extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveSettings();
                 SettingsScreen.this.finish();
             }
         });
+    }
+
+    private void saveSettings() {
+        SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(SHAREDPREF_ITEM_MINECOUNT, mines);
+        editor.putInt(SHAREDPREF_ITEM_GRIDHEIGHT, size);
+        editor.putInt(SHAREDPREF_ITEM_GRIDWIDTH, size);
+        editor.apply();
     }
 
     //The SpinnerListeners are called when the user clicks on a spinner and selects a value.

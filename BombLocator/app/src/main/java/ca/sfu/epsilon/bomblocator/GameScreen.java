@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,26 +19,27 @@ import android.widget.TextView;
 public class GameScreen extends AppCompatActivity {
 
     private static final String SHAREDPREF_SET = "BombLocator";
-    private static final int SHAREDPREF_ITEM_HIGHSCORE = 100;
-    private static final int SHAREDPREF_ITEM_GRIDSIZE = 24;
+    private static final String SHAREDPREF_ITEM_HIGHSCORE = "HighScore";
+    private static final String SHAREDPREF_ITEM_GRIDWIDTH = "GridWidth";
+    private static final String SHAREDPREF_ITEM_GRIDHEIGHT = "GridHeight";
+    private static final String SHAREDPREF_ITEM_MINECOUNT = "MineCount";
 
-    private final int ROWS = 4;
-    private final int COLS = 6;
-    int mineCount = 12;
-    MineArray mineArray = new MineArray(ROWS, COLS);
-    TotalArray totalArray = new TotalArray(ROWS, COLS);
-    ClickedArray clickedArray = new ClickedArray(ROWS, COLS);
-    Button[][] buttonArray = new Button[ROWS][COLS];
+    int rows;
+    int cols;
+    int mineCount;
+    MineArray mineArray = new MineArray(rows, cols);
+    TotalArray totalArray = new TotalArray(rows, cols);
+    ClickedArray clickedArray = new ClickedArray(rows, cols);
+    Button[][] buttonArray = new Button[rows][cols];
 
-
-    int scans = 0;
-    final int highScore = SHAREDPREF_ITEM_HIGHSCORE;
+    int scans;
+    int highScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
-
+        loadSettings();
         setupArrays();
         setupButtons();
         updateTextViews();
@@ -52,7 +54,7 @@ public class GameScreen extends AppCompatActivity {
 
     private void setupButtons() {
         TableLayout table = (TableLayout) findViewById(R.id.gameTable);
-        for(int i = 0; i< ROWS; i++){
+        for(int i = 0; i< rows; i++){
             TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
@@ -60,7 +62,7 @@ public class GameScreen extends AppCompatActivity {
                     1.0f
                 ));
             table.addView(tableRow);
-            for (int j = 0; j< COLS; j++){
+            for (int j = 0; j< cols; j++){
                 final int FINAL_ROW = i;
                 final int FINAL_COL = j;
                 Button button = new Button(this);
@@ -83,7 +85,6 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void buttonClicked(int row, int col) {
-        //lock button sizes
         lockButtonSizes();
         Button button = buttonArray[row][col];
         if(mineArray.getValue(row,col) == 1){
@@ -99,6 +100,7 @@ public class GameScreen extends AppCompatActivity {
             updateClickedText();
             clickedArray.setValue(row, col, 2);
             if (mineCount == 0){//ends the game when all mines found
+                saveHighScore(highScore);
                 finish();
             }
         } else {
@@ -117,9 +119,16 @@ public class GameScreen extends AppCompatActivity {
         }
     }
 
+    private void saveHighScore(int highScore) {
+        SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(SHAREDPREF_ITEM_HIGHSCORE, highScore);
+        editor.apply();
+    }
+
     private void updateClickedText() {
-        for(int i = 0; i< ROWS; i++){
-            for(int j = 0; j<COLS; j++){
+        for(int i = 0; i< rows; i++){
+            for(int j = 0; j< cols; j++){
                 if (clickedArray.getValue(i, j) == 1){
                     updateButtonText(i, j, buttonArray[i][j]);
                 }
@@ -132,8 +141,8 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void lockButtonSizes() {
-        for (int i = 0; i < ROWS; i++){
-            for (int j = 0; j< COLS; j++){
+        for (int i = 0; i < rows; i++){
+            for (int j = 0; j< cols; j++){
                 Button button = buttonArray[i][j];
 
                 int tempWidth = button.getWidth();
@@ -165,6 +174,14 @@ public class GameScreen extends AppCompatActivity {
 
     private void setupTotalsArray(MineArray mineArray) {
         totalArray.populateTotalArray(mineArray);
+    }
+
+    private void loadSettings(){
+        SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
+        highScore = preferences.getInt(SHAREDPREF_ITEM_HIGHSCORE, 100);
+        cols = preferences.getInt(SHAREDPREF_ITEM_GRIDWIDTH, 6);
+        rows = preferences.getInt(SHAREDPREF_ITEM_GRIDHEIGHT, 4);
+        mineCount = preferences.getInt(SHAREDPREF_ITEM_MINECOUNT, 12);
     }
 
     private void setupMineArray() {
