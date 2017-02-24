@@ -8,18 +8,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 public class SettingsScreen extends AppCompatActivity {
 
     private static final String SHAREDPREF_SET = "BombLocator";
     private static final int SHAREDPREF_ITEM_HIGHSCORE = 100;
     private static final int SHAREDPREF_ITEM_GRIDSIZE = 24;
+
     int size = 2;
     int mines = 3;
     int initialsize = 0;

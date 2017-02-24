@@ -1,12 +1,10 @@
 package ca.sfu.epsilon.bomblocator;
 
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-/**
- * Created by ALPHA on 2017-02-22.
- */
+public class MineArray  extends AppCompatActivity {
 
-public class MineArray {
     private int rows;
     private int cols;
     private int[][] mineArray;
@@ -18,8 +16,8 @@ public class MineArray {
     }
 
     public void populateMineArray(int mineCount) {
-        int arrayCol = 0;
-        int arrayRow = 0;
+        int arrayCol;
+        int arrayRow;
         int i = 0;
         while (i < mineCount) {
             arrayRow = (int) (Math.random() * rows);

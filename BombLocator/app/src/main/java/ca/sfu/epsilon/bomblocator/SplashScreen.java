@@ -11,10 +11,6 @@ import static ca.sfu.epsilon.bomblocator.R.id.btnLaunchGame;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private static final String SHAREDPREF_SET = "BombLocator";
-    private static final int SHAREDPREF_ITEM_HIGHSCORE = 100;
-    private static final int SHAREDPREF_ITEM_GRIDSIZE = 24;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,12 +1,10 @@
 package ca.sfu.epsilon.bomblocator;
 
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-/**
- * Created by ALPHA on 2017-02-22.
- */
+public class TotalArray extends AppCompatActivity {
 
-public class TotalArray {
     private int[][] totalArray;
     private int rows;
     private int cols;
@@ -18,9 +16,9 @@ public class TotalArray {
     }
 
     public void populateTotalArray(MineArray mineArray){
-        int i = 0;
-        int j = 0;
-        int temp = 0;
+        int i;
+        int j;
+        int temp;
         int[] rowTotals = new int[rows];
         int[] colTotals = new int[cols];
         for(i=0;i<rows;i++){

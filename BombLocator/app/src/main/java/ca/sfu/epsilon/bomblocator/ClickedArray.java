@@ -1,12 +1,9 @@
 package ca.sfu.epsilon.bomblocator;
 
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 
-/**
- * Created by ALPHA on 2017-02-22.
- */
+public class ClickedArray  extends AppCompatActivity {
 
-public class ClickedArray {
     private int[][] clickedArray;
 
     public ClickedArray(int rows, int cols){
