@@ -24,8 +24,8 @@ public class GameScreen extends AppCompatActivity {
     private static final String SHAREDPREF_ITEM_GRIDHEIGHT = "GridHeight";
     private static final String SHAREDPREF_ITEM_MINECOUNT = "MineCount";
 
-    int rows;
-    int cols;
+    int rows = 4;
+    int cols = 6;
     int mineCount;
     MineArray mineArray = new MineArray(rows, cols);
     TotalArray totalArray = new TotalArray(rows, cols);
