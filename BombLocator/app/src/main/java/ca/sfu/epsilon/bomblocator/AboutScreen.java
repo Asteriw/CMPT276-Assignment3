@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
+import android.widget.TextView;
 
 public class AboutScreen extends AppCompatActivity {
 
@@ -11,6 +14,7 @@ public class AboutScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_screen);
+
     }
 
     public static Intent makeIntent(Context context) {
