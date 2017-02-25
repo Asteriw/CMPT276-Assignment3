@@ -65,18 +65,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/resetbutton"
-        android:layout_alignBaseline="@+id/MineAmount"
-        android:layout_alignBottom="@+id/MineAmount"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_above="@+id/MineAmount"
+        android:layout_toRightOf="@+id/OptionDescrip"
+        android:layout_toEndOf="@+id/OptionDescrip" />
 
     <Button
         android:text="@string/back_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/backbutton"
-        android:layout_alignBaseline="@+id/BoardSize"
-        android:layout_alignBottom="@+id/BoardSize"
-        android:layout_alignLeft="@+id/resetbutton"
-        android:layout_alignStart="@+id/resetbutton" />
+        android:layout_alignTop="@+id/MineAmount"
+        android:layout_alignRight="@+id/resetbutton"
+        android:layout_alignEnd="@+id/resetbutton" />
 </RelativeLayout>

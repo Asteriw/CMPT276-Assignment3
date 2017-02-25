@@ -2,6 +2,7 @@ package ca.sfu.epsilon.bomblocator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,11 +18,11 @@ import static ca.sfu.epsilon.bomblocator.R.id.btnStartGame;
 
 public class MainMenu extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
         setupButtons();
     }
 

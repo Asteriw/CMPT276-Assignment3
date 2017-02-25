@@ -24,13 +24,13 @@ public class GameScreen extends AppCompatActivity {
     private static final String SHAREDPREF_ITEM_GRIDHEIGHT = "GridHeight";
     private static final String SHAREDPREF_ITEM_MINECOUNT = "MineCount";
 
-    int rows = 4;
-    int cols = 6;
+    int rows;
+    int cols;
     int mineCount;
-    MineArray mineArray = new MineArray(rows, cols);
-    TotalArray totalArray = new TotalArray(rows, cols);
-    ClickedArray clickedArray = new ClickedArray(rows, cols);
-    Button[][] buttonArray = new Button[rows][cols];
+    MineArray mineArray;
+    TotalArray totalArray;
+    ClickedArray clickedArray;
+    Button[][] buttonArray;
 
     int scans;
     int highScore;
@@ -40,16 +40,20 @@ public class GameScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
         loadSettings();
+        updateTextViews();
         setupArrays();
         setupButtons();
-        updateTextViews();
     }
 
     private void  updateTextViews() {
         TextView defuserAmount = (TextView) findViewById(R.id.defuserField);
         TextView highScoreTV = (TextView) findViewById(R.id.scoreField);
         defuserAmount.setText(String.valueOf(scans));
-        highScoreTV.setText(String.valueOf(highScore));
+        if (highScore == 100 || highScore == 0){
+            highScoreTV.setText("N/A");
+        } else {
+            highScoreTV.setText(String.valueOf(highScore));
+        }
     }
 
     private void setupButtons() {
@@ -100,7 +104,9 @@ public class GameScreen extends AppCompatActivity {
             updateClickedText();
             clickedArray.setValue(row, col, 2);
             if (mineCount == 0){//ends the game when all mines found
-                saveHighScore(highScore);
+                if (scans < highScore) {
+                    saveHighScore(scans);
+                }
                 finish();
             }
         } else {
@@ -157,14 +163,13 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void setupArrays() {
+        mineArray = new MineArray(rows, cols);
+        totalArray = new TotalArray(rows, cols);
+        clickedArray = new ClickedArray(rows, cols);
+        buttonArray = new Button[rows][cols];
         setupMineArray();
         setupTotalsArray(mineArray);
-        setupClickedArray();
-        printArrays();
-    }
-
-    private void setupClickedArray() {
-
+        //printArrays();
     }
 
     private void printArrays() {
