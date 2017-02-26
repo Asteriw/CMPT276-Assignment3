@@ -21,11 +21,13 @@ public class SettingsScreen extends AppCompatActivity {
     private static final String SHAREDPREF_ITEM_GRIDWIDTH = "GridWidth";
     private static final String SHAREDPREF_ITEM_GRIDHEIGHT = "GridHeight";
     private static final String SHAREDPREF_ITEM_MINECOUNT = "MineCount";
+    private static final String SHAREDPREF_ITEM_MINESPINNER = "MineSpinner";
+    private static final String SHAREDPREF_ITEM_SIZESPINNER = "SizeSpinner";
 
-    int size = 2;
-    int width = 6;
-    int height = 4;
-    int mines = 2;
+    int sizeSpinner;
+    int width;
+    int height;
+    int minesSpinner;
     int minesVal;
     int highScore;
     int initialsize = 0;
@@ -43,21 +45,21 @@ public class SettingsScreen extends AppCompatActivity {
 
     //setupSpinners creates the two dropdown menus, reading values off of string arrays located in the strings.xml.
     // When an item is selected, the spinners call their own SpinnerListener(function described below).
-    //.setSelection makes the spinners display the value at the specified "size/mines" position.
+    //.setSelection makes the spinners display the value at the specified "sizeSpinner/minesSpinner" position.
     private void setupSpinners() {
         Spinner BSizeSpinner = (Spinner) findViewById(R.id.BSizeSpinner);
         ArrayAdapter<CharSequence> BSizeAdapter = ArrayAdapter.createFromResource(this, R.array.board_sizes, android.R.layout.simple_spinner_item);
         BSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         BSizeSpinner.setOnItemSelectedListener(new SpinnerListener1());
         BSizeSpinner.setAdapter(BSizeAdapter);
-        BSizeSpinner.setSelection(size);
+        BSizeSpinner.setSelection(sizeSpinner);
 
         Spinner MineNumSpinner = (Spinner) findViewById(R.id.MineNumSpinner);
         ArrayAdapter<CharSequence> MineNumAdapter = ArrayAdapter.createFromResource(this, R.array.mine_amounts, android.R.layout.simple_spinner_item);
         MineNumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         MineNumSpinner.setOnItemSelectedListener(new SpinnerListener2());
         MineNumSpinner.setAdapter(MineNumAdapter);
-        MineNumSpinner.setSelection(mines);
+        MineNumSpinner.setSelection(minesSpinner);
     }
 
     //A reset button, that, when clicked, brings up an alert dialog with a yes/no choice.
@@ -103,13 +105,15 @@ public class SettingsScreen extends AppCompatActivity {
         editor.putInt(SHAREDPREF_ITEM_GRIDHEIGHT, height);
         editor.putInt(SHAREDPREF_ITEM_GRIDWIDTH, width);
         editor.putInt(SHAREDPREF_ITEM_HIGHSCORE, highScore);
+        editor.putInt(SHAREDPREF_ITEM_MINESPINNER, minesSpinner);
+        editor.putInt(SHAREDPREF_ITEM_SIZESPINNER, sizeSpinner);
         editor.apply();
     }
 
     //The SpinnerListeners are called when the user clicks on a spinner and selects a value.
-    //When the Settings activity first launches, the "initial" variables stop the Listeners from changing the default values of size and mines.
+    //When the Settings activity first launches, the "initial" variables stop the Listeners from changing the default values of sizeSpinner and minesSpinner.
     //The "initial" variables are what allow the spinners to change the default values displayed on the spinners.
-    //After the initial setup, later calls on SpinnerListeners will change the size and mines variables and save them, thus changing the game settings.
+    //After the initial setup, later calls on SpinnerListeners will change the sizeSpinner and minesSpinner variables and save them, thus changing the game settings.
     private class SpinnerListener1 implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
@@ -121,21 +125,21 @@ public class SettingsScreen extends AppCompatActivity {
             String selectedSettingName = parent.getItemAtPosition(position).toString();
             Log.i("Settings", "Size number: " + selectedSettingNum + " is: " + selectedSettingName + ".");
             if (selectedSettingNum == 0) {
-                size = 0;
+                sizeSpinner = 0;
                 width = 6;
                 height = 4;
             }
             if (selectedSettingNum == 1) {
-                size = 1;
+                sizeSpinner = 1;
                 width = 10;
                 height = 5;
             }
             if (selectedSettingNum == 2) {
-                size = 2;
+                sizeSpinner = 2;
                 width = 15;
                 height = 6;
             }
-            Log.i("Settings", "Size and Mines are: " + size + " and " + mines);
+            Log.i("Settings", "Size and Mines are: " + sizeSpinner + " and " + minesSpinner);
         }
 
         public void onNothingSelected (AdapterView<?> parent) {
@@ -153,22 +157,22 @@ public class SettingsScreen extends AppCompatActivity {
             String selectedSettingName = parent.getItemAtPosition(position).toString();
             Log.i("Settings", "Mines number: " + selectedSettingNum + " is: " + selectedSettingName + ".");
             if (selectedSettingNum == 0) {
-                mines = 0;
+                minesSpinner = 0;
                 minesVal = 6;
             }
             if (selectedSettingNum == 1) {
-                mines = 1;
+                minesSpinner = 1;
                 minesVal = 10;
             }
             if (selectedSettingNum == 2) {
-                mines = 2;
+                minesSpinner = 2;
                 minesVal = 15;
             }
             if (selectedSettingNum == 3) {
-                mines = 3;
+                minesSpinner = 3;
                 minesVal = 20;
             }
-            Log.i("Settings", "Size and Mines are: " + size + " and " + mines);
+            Log.i("Settings", "Size and Mines are: " + sizeSpinner + " and " + minesSpinner);
         }
 
         public void onNothingSelected (AdapterView<?> parent) {
