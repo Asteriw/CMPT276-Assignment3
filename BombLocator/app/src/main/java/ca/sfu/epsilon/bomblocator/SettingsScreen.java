@@ -37,10 +37,17 @@ public class SettingsScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_screen);
-
+        loadSettings();
         setupSpinners();
         setupReset();
         setupBackButton();
+    }
+
+    private void loadSettings() {
+        SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
+        width = preferences.getInt(SHAREDPREF_ITEM_GRIDWIDTH, 6);
+        height = preferences.getInt(SHAREDPREF_ITEM_GRIDHEIGHT, 4);
+        minesVal = preferences.getInt(SHAREDPREF_ITEM_MINECOUNT, 6);
     }
 
     //setupSpinners creates the two dropdown menus, reading values off of string arrays located in the strings.xml.
@@ -104,7 +111,6 @@ public class SettingsScreen extends AppCompatActivity {
         editor.putInt(SHAREDPREF_ITEM_MINECOUNT, minesVal);
         editor.putInt(SHAREDPREF_ITEM_GRIDHEIGHT, height);
         editor.putInt(SHAREDPREF_ITEM_GRIDWIDTH, width);
-        editor.putInt(SHAREDPREF_ITEM_HIGHSCORE, highScore);
         editor.putInt(SHAREDPREF_ITEM_MINESPINNER, minesSpinner);
         editor.putInt(SHAREDPREF_ITEM_SIZESPINNER, sizeSpinner);
         editor.apply();

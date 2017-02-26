@@ -18,7 +18,7 @@ public class MineArray  extends AppCompatActivity {
     public void populateMineArray(int mineCount) {
         int arrayCol;
         int arrayRow;
-        int i = 0;
+        int i = 1;
         while (i < mineCount) {
             arrayRow = (int) (Math.random() * rows);
             arrayCol = (int) (Math.random() * cols);

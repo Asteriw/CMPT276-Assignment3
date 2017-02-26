@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -103,7 +104,7 @@ public class GameScreen extends AppCompatActivity {
             totalArray.populateTotalArray(mineArray);
             updateClickedText();
             clickedArray.setValue(row, col, 2);
-            if (mineCount == 0){//ends the game when all minesSpinner found
+            if (mineCount == 1){//ends the game when all minesSpinner found
                 if (scans < highScore) {
                     saveHighScore(scans);
                 }
@@ -169,7 +170,7 @@ public class GameScreen extends AppCompatActivity {
         buttonArray = new Button[rows][cols];
         setupMineArray();
         setupTotalsArray(mineArray);
-        printArrays();
+        //printArrays();
     }
 
     private void printArrays() {
@@ -186,7 +187,10 @@ public class GameScreen extends AppCompatActivity {
         highScore = preferences.getInt(SHAREDPREF_ITEM_HIGHSCORE, 100);
         cols = preferences.getInt(SHAREDPREF_ITEM_GRIDWIDTH, 6);
         rows = preferences.getInt(SHAREDPREF_ITEM_GRIDHEIGHT, 4);
-        mineCount = preferences.getInt(SHAREDPREF_ITEM_MINECOUNT, 10);
+        mineCount = preferences.getInt(SHAREDPREF_ITEM_MINECOUNT, 6);
+        Log.i("THIS", "Done loading");
+        Log.i("THIS", "Cols: " + cols + " and rows: " + rows + " and mineCount: " + mineCount);
+
     }
 
     private void setupMineArray() {
