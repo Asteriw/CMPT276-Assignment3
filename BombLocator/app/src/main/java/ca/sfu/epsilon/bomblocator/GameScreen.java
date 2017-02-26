@@ -94,7 +94,7 @@ public class GameScreen extends AppCompatActivity {
         if(mineArray.getValue(row,col) == 1){
             int tempWidth = button.getWidth();
             int tempHeight = button.getHeight();
-            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), ca.sfu.epsilon.bomblocator.R.mipmap.bomb);
+            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.found_bomb);
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, tempWidth, tempHeight, true);
             Resources resource = getResources();
             button.setBackground(new BitmapDrawable(resource, scaledBitmap));

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_splash_screen"
     android:layout_width="match_parent"
@@ -26,5 +27,20 @@
         android:textSize="36sp"
         android:layout_marginTop="25dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:elevation="5dp"
+        tools:elevation="5dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/image4"
+        android:layout_centerVertical="true"
+        android:id="@+id/imageView"
+        android:adjustViewBounds="false"
+        android:alpha="1"
+        android:elevation="0dp"
+        tools:elevation="0dp" />
 </RelativeLayout>
