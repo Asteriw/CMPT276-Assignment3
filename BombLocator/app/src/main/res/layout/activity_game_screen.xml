@@ -78,9 +78,9 @@
         android:scaleType="fitXY"
         app:srcCompat="@drawable/image4"
         android:id="@+id/settingsbImage"
-        android:alpha="0.5"
+        android:alpha="0.25"
         android:elevation="0dp"
         tools:elevation="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
 </RelativeLayout>
