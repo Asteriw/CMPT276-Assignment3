@@ -19,75 +19,6 @@
         android:elevation="5dp"
         tools:elevation="5dp" />
 
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/BSizeSpinner"
-        android:layout_below="@+id/BoardSize"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/OptionDescrip"
-        android:layout_toLeftOf="@+id/OptionDescrip"
-        android:elevation="5dp"
-        tools:elevation="5dp" />
-
-    <TextView
-        android:text="@string/board_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/BoardSize"
-        android:textSize="30sp"
-        android:layout_below="@+id/OptionDescrip"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:elevation="5dp"
-        tools:elevation="5dp"
-        android:textColor="@color/green" />
-
-    <TextView
-        android:text="@string/amount_of_bombs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/BombAmount"
-        android:textSize="30sp"
-        android:layout_below="@+id/BSizeSpinner"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp"
-        android:elevation="5dp"
-        tools:elevation="5dp"
-        android:textColor="@color/green" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/BombNumSpinner"
-        android:layout_below="@+id/BombAmount"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/BSizeSpinner"
-        android:layout_alignEnd="@+id/BSizeSpinner"
-        android:elevation="5dp"
-        tools:elevation="5dp" />
-
-    <Button
-        android:text="@string/reset_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/resetbutton"
-        android:layout_above="@+id/BombAmount"
-        android:layout_toRightOf="@+id/OptionDescrip"
-        android:layout_toEndOf="@+id/OptionDescrip" />
-
-    <Button
-        android:text="@string/back_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/backbutton"
-        android:layout_alignTop="@+id/BombAmount"
-        android:layout_alignRight="@+id/resetbutton"
-        android:layout_alignEnd="@+id/resetbutton" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,4 +30,78 @@
         android:alpha="0.5"
         android:elevation="0dp"
         tools:elevation="0dp" />
+
+    <Button
+        android:text="@string/reset_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resetbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="22dp" />
+
+    <Button
+        android:text="@string/back_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/backbutton"
+        android:layout_alignBaseline="@+id/resetbutton"
+        android:layout_alignBottom="@+id/resetbutton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="33dp"
+        android:layout_marginEnd="33dp" />
+
+    <TextView
+        android:text="@string/amount_of_bombs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BombAmount"
+        android:textSize="30sp"
+        android:elevation="5dp"
+        tools:elevation="5dp"
+        android:textColor="@color/green"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/resetbutton"
+        android:layout_alignStart="@+id/resetbutton" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/BombNumSpinner"
+        android:elevation="5dp"
+        tools:elevation="5dp"
+        android:layout_below="@+id/BombAmount"
+        android:layout_alignLeft="@+id/BombAmount"
+        android:layout_alignStart="@+id/BombAmount"
+        android:layout_alignRight="@+id/BombAmount"
+        android:layout_alignEnd="@+id/BombAmount" />
+
+    <TextView
+        android:text="@string/board_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BoardSize"
+        android:textSize="30sp"
+        android:elevation="5dp"
+        tools:elevation="5dp"
+        android:textColor="@color/green"
+        android:layout_below="@+id/OptionDescrip"
+        android:layout_alignLeft="@+id/BombAmount"
+        android:layout_alignStart="@+id/BombAmount" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/BSizeSpinner"
+        android:elevation="5dp"
+        tools:elevation="5dp"
+        android:layout_below="@+id/BoardSize"
+        android:layout_alignLeft="@+id/BoardSize"
+        android:layout_alignStart="@+id/BoardSize"
+        android:layout_toLeftOf="@+id/OptionDescrip"
+        android:layout_toStartOf="@+id/OptionDescrip" />
 </RelativeLayout>
