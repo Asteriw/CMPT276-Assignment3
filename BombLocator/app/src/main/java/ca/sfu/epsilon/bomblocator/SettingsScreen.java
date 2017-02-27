@@ -47,6 +47,8 @@ public class SettingsScreen extends AppCompatActivity {
         width = preferences.getInt(SHAREDPREF_ITEM_GRIDWIDTH, 6);
         height = preferences.getInt(SHAREDPREF_ITEM_GRIDHEIGHT, 4);
         bombsVal = preferences.getInt(SHAREDPREF_ITEM_BOMBCOUNT, 6);
+        sizeSpinner = preferences.getInt(SHAREDPREF_ITEM_SIZESPINNER, 0);
+        bombSpinner = preferences.getInt(SHAREDPREF_ITEM_BOMBSPINNER, 0);
     }
 
     //setupSpinners creates the two dropdown menus, reading values off of string arrays located in the strings.xml.

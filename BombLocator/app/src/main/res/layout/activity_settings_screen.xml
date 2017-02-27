@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_settings_screen"
     android:layout_width="match_parent"
@@ -17,7 +18,10 @@
         android:text="@string/game_options"
         android:id="@+id/OptionDescrip"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/green"
+        android:elevation="5dp"
+        tools:elevation="5dp" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -27,7 +31,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/OptionDescrip"
-        android:layout_toLeftOf="@+id/OptionDescrip" />
+        android:layout_toLeftOf="@+id/OptionDescrip"
+        android:elevation="5dp"
+        tools:elevation="5dp" />
 
     <TextView
         android:text="@string/board_size"
@@ -37,7 +43,10 @@
         android:textSize="30sp"
         android:layout_below="@+id/OptionDescrip"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:elevation="5dp"
+        tools:elevation="5dp"
+        android:textColor="@color/green" />
 
     <TextView
         android:text="@string/amount_of_bombs"
@@ -48,7 +57,10 @@
         android:layout_below="@+id/BSizeSpinner"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp" />
+        android:layout_marginTop="38dp"
+        android:elevation="5dp"
+        tools:elevation="5dp"
+        android:textColor="@color/green" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -58,7 +70,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/BSizeSpinner"
-        android:layout_alignEnd="@+id/BSizeSpinner" />
+        android:layout_alignEnd="@+id/BSizeSpinner"
+        android:elevation="5dp"
+        tools:elevation="5dp" />
 
     <Button
         android:text="@string/reset_progress"
@@ -77,4 +91,16 @@
         android:layout_alignTop="@+id/BombAmount"
         android:layout_alignRight="@+id/resetbutton"
         android:layout_alignEnd="@+id/resetbutton" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/image34"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/settingsbImage"
+        android:alpha="0.5"
+        android:elevation="0dp"
+        tools:elevation="0dp" />
 </RelativeLayout>
