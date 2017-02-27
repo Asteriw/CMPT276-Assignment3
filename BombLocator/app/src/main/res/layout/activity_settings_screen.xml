@@ -40,10 +40,10 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="@string/amount_of_mines"
+        android:text="@string/amount_of_bombs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/MineAmount"
+        android:id="@+id/BombAmount"
         android:textSize="30sp"
         android:layout_below="@+id/BSizeSpinner"
         android:layout_alignParentLeft="true"
@@ -53,8 +53,8 @@
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/MineNumSpinner"
-        android:layout_below="@+id/MineAmount"
+        android:id="@+id/BombNumSpinner"
+        android:layout_below="@+id/BombAmount"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/BSizeSpinner"
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/resetbutton"
-        android:layout_above="@+id/MineAmount"
+        android:layout_above="@+id/BombAmount"
         android:layout_toRightOf="@+id/OptionDescrip"
         android:layout_toEndOf="@+id/OptionDescrip" />
 
@@ -74,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/backbutton"
-        android:layout_alignTop="@+id/MineAmount"
+        android:layout_alignTop="@+id/BombAmount"
         android:layout_alignRight="@+id/resetbutton"
         android:layout_alignEnd="@+id/resetbutton" />
 </RelativeLayout>

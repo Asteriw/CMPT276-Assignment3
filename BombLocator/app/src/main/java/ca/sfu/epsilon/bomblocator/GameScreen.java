@@ -12,7 +12,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -25,17 +24,17 @@ public class GameScreen extends AppCompatActivity {
     private static final String SHAREDPREF_ITEM_HIGHSCORE = "HighScore";
     private static final String SHAREDPREF_ITEM_GRIDWIDTH = "GridWidth";
     private static final String SHAREDPREF_ITEM_GRIDHEIGHT = "GridHeight";
-    private static final String SHAREDPREF_ITEM_MINECOUNT = "MineCount";
+    private static final String SHAREDPREF_ITEM_BOMBCOUNT = "BombCount";
 
     int rows;
     int cols;
-    int mineCount;
-    MineArray mineArray;
+    int bombCount;
+    BombArray bombArray;
     TotalArray totalArray;
     ClickedArray clickedArray;
     Button[][] buttonArray;
 
-    int startMinecount;
+    int startBombCount;
     int scans;
     int highScore;
 
@@ -95,23 +94,23 @@ public class GameScreen extends AppCompatActivity {
     private void buttonClicked(int row, int col) {
         lockButtonSizes();
         Button button = buttonArray[row][col];
-        if(mineArray.getValue(row,col) == 1){
+        if(bombArray.getValue(row,col) == 1){
             int tempWidth = button.getWidth();
             int tempHeight = button.getHeight();
             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.found_bomb);
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, tempWidth, tempHeight, true);
             Resources resource = getResources();
             button.setBackground(new BitmapDrawable(resource, scaledBitmap));
-            mineArray.setValue(row, col, 0);
-            mineCount--;
-            totalArray.populateTotalArray(mineArray);
+            bombArray.setValue(row, col, 0);
+            bombCount--;
+            totalArray.populateTotalArray(bombArray);
             updateClickedText();
             clickedArray.setValue(row, col, 2);
-            if (mineCount == 0){//ends the game when all mines found
+            if (bombCount == 0){//ends the game when all bombs found
                 if (scans < highScore) {
                     TextView highScoreTV = (TextView) findViewById(R.id.scoreField);
                     highScoreTV.setText(String.valueOf(scans));
-                    String victoryMessage = getString(R.string.win_highscore, scans, rows, cols, startMinecount);
+                    String victoryMessage = getString(R.string.win_highscore, scans, rows, cols, startBombCount);
                     new AlertDialog.Builder(GameScreen.this)
                             .setMessage(victoryMessage)
                             .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
@@ -151,7 +150,7 @@ public class GameScreen extends AppCompatActivity {
     private void saveHighScore(int highScore) {
         SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+startMinecount, highScore);
+        editor.putInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+ startBombCount, highScore);
         editor.apply();
     }
 
@@ -186,29 +185,29 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void setupArrays() {
-        mineArray = new MineArray(rows, cols);
+        bombArray = new BombArray(rows, cols);
         totalArray = new TotalArray(rows, cols);
         clickedArray = new ClickedArray(rows, cols);
         buttonArray = new Button[rows][cols];
-        setupMineArray();
-        setupTotalsArray(mineArray);
+        setupBombArray();
+        setupTotalsArray(bombArray);
     }
 
-    private void setupTotalsArray(MineArray mineArray) {
-        totalArray.populateTotalArray(mineArray);
+    private void setupTotalsArray(BombArray bombArray) {
+        totalArray.populateTotalArray(bombArray);
     }
 
     private void loadSettings(){
         SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
         cols = preferences.getInt(SHAREDPREF_ITEM_GRIDWIDTH, 6);
         rows = preferences.getInt(SHAREDPREF_ITEM_GRIDHEIGHT, 4);
-        mineCount = preferences.getInt(SHAREDPREF_ITEM_MINECOUNT, 6);
-        highScore = preferences.getInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+mineCount, 100);
-        startMinecount = mineCount;
+        bombCount = preferences.getInt(SHAREDPREF_ITEM_BOMBCOUNT, 6);
+        highScore = preferences.getInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+ bombCount, 100);
+        startBombCount = bombCount;
     }
 
-    private void setupMineArray() {
-        mineArray.populateMineArray(mineCount);
+    private void setupBombArray() {
+        bombArray.populateBombArray(bombCount);
     }
 
     public static Intent makeIntent(Context context) {

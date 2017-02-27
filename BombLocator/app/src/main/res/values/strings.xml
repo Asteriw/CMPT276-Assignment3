@@ -6,7 +6,7 @@
     <string name="new_game">New Game</string>
     <string name="settings">Settings</string>
     <string name="game_options">Game Options</string>
-    <string name="amount_of_mines">Amount of Mines</string>
+    <string name="amount_of_bombs">Amount of Bombs</string>
     <string name="board_size">Board Size</string>
     <string name="reset_progress">Reset Progress</string>
     <string name="back_options">Back</string>
@@ -26,7 +26,7 @@
         CMPT276 class, taught by Professor Brian Fraser. More information about the class can be found
         at http://www.cs.sfu.ca/CourseCentral/276/bfraser/index.html.</string>
     <string name="about_the_game_really"><b>About the Game (Really):</b> In this game, your task
-        is to locate every bomb in the minefield.
+        is to locate every bomb in the bombfield.
         When you begin the game, you will see a grid of possible search locations.
         When you select an empty location, there are two possible outcomes. If there is no bomb
         in the selected location, a scan result will appear. The scan result tells you how many bombs are in the same row or column,
@@ -38,7 +38,7 @@
         <item>5 x 10</item>
         <item>6 x 15</item>
     </string-array>
-    <string-array name="mine_amounts">
+    <string-array name="bomb_amounts">
         <item>6 bombs</item>
         <item>10 bombs</item>
         <item>15 bombs</item>
