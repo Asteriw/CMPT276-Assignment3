@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
+import android.preference.Preference;
 import android.support.v7.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class GameScreen extends AppCompatActivity {
     private static final String SHAREDPREF_ITEM_GRIDWIDTH = "GridWidth";
     private static final String SHAREDPREF_ITEM_GRIDHEIGHT = "GridHeight";
     private static final String SHAREDPREF_ITEM_BOMBCOUNT = "BombCount";
+    private static final String SHAREDPREF_ITEM_GAMESPLAYED = "GamesPlayed";
 
     int rows;
     int cols;
@@ -38,21 +40,26 @@ public class GameScreen extends AppCompatActivity {
     int startBombCount;
     int scans;
     int highScore;
+    int gamesPlayed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
         loadSettings();
+        gamesPlayed++;
         updateTextViews();
         setupArrays();
         setupButtons();
+        saveGamesPlayed();
     }
 
     private void  updateTextViews() {
         TextView defuserAmount = (TextView) findViewById(R.id.defuserField);
         TextView highScoreTV = (TextView) findViewById(R.id.scoreField);
+        TextView gamesPlayedVar = (TextView) findViewById(R.id.gamesPlayedVar);
         defuserAmount.setText(String.valueOf(scans));
+        gamesPlayedVar.setText(String.valueOf(gamesPlayed));
         if (highScore == 100 || highScore == 0){
             highScoreTV.setText(R.string.highscore_none);
         } else {
@@ -155,7 +162,14 @@ public class GameScreen extends AppCompatActivity {
     private void saveHighScore(int highScore) {
         SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+ startBombCount, highScore);
+        editor.putInt(SHAREDPREF_ITEM_HIGHSCORE + rows + cols + startBombCount, highScore);
+        editor.apply();
+    }
+
+    private void saveGamesPlayed() {
+        SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(SHAREDPREF_ITEM_GAMESPLAYED, gamesPlayed);
         editor.apply();
     }
 
@@ -207,7 +221,8 @@ public class GameScreen extends AppCompatActivity {
         cols = preferences.getInt(SHAREDPREF_ITEM_GRIDWIDTH, 6);
         rows = preferences.getInt(SHAREDPREF_ITEM_GRIDHEIGHT, 4);
         bombCount = preferences.getInt(SHAREDPREF_ITEM_BOMBCOUNT, 6);
-        highScore = preferences.getInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+ bombCount, 100);
+        highScore = preferences.getInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+bombCount, 100);
+        gamesPlayed = preferences.getInt(SHAREDPREF_ITEM_GAMESPLAYED, 100);
         startBombCount = bombCount;
     }
 

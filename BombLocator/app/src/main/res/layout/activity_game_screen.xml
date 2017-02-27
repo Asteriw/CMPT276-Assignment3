@@ -79,4 +79,25 @@
         tools:elevation="0dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true" />
+
+    <TextView
+        android:text="@string/games_played"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="95dp"
+        android:layout_marginStart="95dp"
+        android:id="@+id/gamesPlayedTV"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/defuserField"
+        android:layout_toEndOf="@+id/defuserField" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gamesPlayedVar"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/gamesPlayedTV"
+        android:layout_toEndOf="@+id/gamesPlayedTV"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp" />
 </RelativeLayout>

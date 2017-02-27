@@ -22,6 +22,7 @@ public class SettingsScreen extends AppCompatActivity {
     private static final String SHAREDPREF_ITEM_BOMBCOUNT = "BombCount";
     private static final String SHAREDPREF_ITEM_BOMBSPINNER = "BombSpinner";
     private static final String SHAREDPREF_ITEM_SIZESPINNER = "SizeSpinner";
+    private static final String SHAREDPREF_ITEM_GAMESPLAYED = "GamesPlayed";
 
     int sizeSpinner;
     int width;
@@ -93,6 +94,7 @@ public class SettingsScreen extends AppCompatActivity {
                                     editor.putInt(SHAREDPREF_ITEM_HIGHSCORE+5+10+i, 100);
                                     editor.putInt(SHAREDPREF_ITEM_HIGHSCORE+6+15+i, 100);
                                 }
+                                editor.putInt(SHAREDPREF_ITEM_GAMESPLAYED, 0);
                                 editor.apply();
                                 SettingsScreen.this.finish();
                             }
