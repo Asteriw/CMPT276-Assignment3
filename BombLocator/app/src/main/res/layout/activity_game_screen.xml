@@ -81,23 +81,37 @@
         android:layout_alignParentTop="true" />
 
     <TextView
-        android:text="@string/games_played"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="95dp"
-        android:layout_marginStart="95dp"
-        android:id="@+id/gamesPlayedTV"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/defuserField"
-        android:layout_toEndOf="@+id/defuserField" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gamesPlayedVar"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/gamesPlayedTV"
         android:layout_toEndOf="@+id/gamesPlayedTV"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="9dp"
+        android:textColor="@color/white"
         android:layout_marginStart="20dp" />
+
+    <TextView
+        android:text="@string/bombs_to_find"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:id="@+id/bombsRevealed"
+        android:textColor="@color/white"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/scoreText"
+        android:layout_toStartOf="@+id/scoreText" />
+
+    <TextView
+        android:text="@string/games_played"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="43dp"
+        android:textColor="@color/white"
+        android:id="@+id/gamesPlayedTV"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/defuserField"
+        android:layout_toEndOf="@+id/defuserField" />
 </RelativeLayout>

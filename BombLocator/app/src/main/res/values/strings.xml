@@ -34,6 +34,7 @@
         search the location of a revealed bomb, a scan result will appear. Every time a scan result
         or bomb is revealed it will count as an action. Try to win in as few actions as possible!</string>
     <string name="games_played">Games Played:</string>
+    <string name="bombs_to_find">Bombs: %1$d of %2$d</string>
     <string-array name="board_sizes">
         <item>4 x 6</item>
         <item>5 x 10</item>

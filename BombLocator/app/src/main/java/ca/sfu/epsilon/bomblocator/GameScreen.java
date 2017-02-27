@@ -56,6 +56,9 @@ public class GameScreen extends AppCompatActivity {
         TextView defuserAmount = (TextView) findViewById(R.id.defuserField);
         TextView highScoreTV = (TextView) findViewById(R.id.scoreField);
         TextView gamesPlayedVar = (TextView) findViewById(R.id.gamesPlayedVar);
+        TextView bombsToFind = (TextView) findViewById(R.id.bombsRevealed);
+        String bombsFound = getString(R.string.bombs_to_find, startBombCount-bombCount, startBombCount);
+        bombsToFind.setText(bombsFound);
         defuserAmount.setText(String.valueOf(scans));
         gamesPlayedVar.setText(String.valueOf(gamesPlayed));
         if (highScore == 100 || highScore == 0){
@@ -111,6 +114,7 @@ public class GameScreen extends AppCompatActivity {
             bombCount--;
             totalArray.populateTotalArray(bombArray);
             updateClickedText();
+            updateTextViews();
             clickedArray.setValue(row, col, 2);
             if (bombCount == 0){//ends the game when all bombs found
                 if (scans < highScore) {
