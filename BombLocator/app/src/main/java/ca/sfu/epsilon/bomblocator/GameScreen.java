@@ -111,9 +111,9 @@ public class GameScreen extends AppCompatActivity {
                 if (scans < highScore) {
                     TextView highScoreTV = (TextView) findViewById(R.id.scoreField);
                     highScoreTV.setText(String.valueOf(scans));
-                    String victoryMessage = getString(R.string.win_highscore, scans, rows, cols, startBombCount);
                     new AlertDialog.Builder(GameScreen.this)
-                            .setMessage(victoryMessage)
+                            .setTitle(R.string.win_highscore)
+                            .setIcon(R.drawable.star)
                             .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     GameScreen.this.finish();
@@ -123,7 +123,8 @@ public class GameScreen extends AppCompatActivity {
                     saveHighScore(scans);
                 } else {
                     new AlertDialog.Builder(GameScreen.this)
-                            .setMessage(R.string.win_nohighscore)
+                            .setTitle(R.string.win_nohighscore)
+                            .setIcon(R.drawable.star)
                             .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     GameScreen.this.finish();
