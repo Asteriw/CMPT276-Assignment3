@@ -35,6 +35,9 @@
         or bomb is revealed it will count as an action. Try to win in as few actions as possible!</string>
     <string name="games_played">Games Played:</string>
     <string name="bombs_to_find">Bombs: %1$d of %2$d</string>
+    <string name="bombcitation">Picture of bomb used under LGPL licence: https://commons.wikimedia.org/wiki/Crystal_Clear#/media/File:Crystal_Clear_app_core.png</string>
+    <string name="starcitation">Picture of star used under LGPL license: https://commons.wikimedia.org/wiki/Crystal_Clear#/media/File:Crystal_Clear_action_bookmark.png</string>
+    <string name="bfrasercitation">Background images using Image Files 4 and 34 from Brian Fraser\'s Photo Library: http://www.cs.sfu.ca/CourseCentral/276/bfraser/solutions/images/Images/</string>
     <string-array name="board_sizes">
         <item>4 x 6</item>
         <item>5 x 10</item>
