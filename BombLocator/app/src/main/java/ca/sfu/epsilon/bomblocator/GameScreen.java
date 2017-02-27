@@ -54,7 +54,7 @@ public class GameScreen extends AppCompatActivity {
         TextView highScoreTV = (TextView) findViewById(R.id.scoreField);
         defuserAmount.setText(String.valueOf(scans));
         if (highScore == 100 || highScore == 0){
-            highScoreTV.setText("N/A");
+            highScoreTV.setText(R.string.highscore_none);
         } else {
             highScoreTV.setText(String.valueOf(highScore));
         }
@@ -112,8 +112,8 @@ public class GameScreen extends AppCompatActivity {
                     TextView highScoreTV = (TextView) findViewById(R.id.scoreField);
                     highScoreTV.setText(String.valueOf(scans));
                     new AlertDialog.Builder(GameScreen.this)
-                            .setMessage("Congratulations! You set a new high score of " + scans + " for the "+ rows + "x" + cols + " grid with " + startMinecount + " mines!")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            .setMessage("Congratulations! You set a new high score of " + scans + " for the " + rows + "x" + cols + " grid with " + startMinecount + " bombs!")
+                            .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     GameScreen.this.finish();
                                 }
@@ -122,8 +122,8 @@ public class GameScreen extends AppCompatActivity {
                     saveHighScore(scans);
                 } else {
                     new AlertDialog.Builder(GameScreen.this)
-                            .setMessage("Congratulations! You won!")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            .setMessage(R.string.win_nohighscore)
+                            .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     GameScreen.this.finish();
                                 }
@@ -191,12 +191,6 @@ public class GameScreen extends AppCompatActivity {
         buttonArray = new Button[rows][cols];
         setupMineArray();
         setupTotalsArray(mineArray);
-        //printArrays();
-    }
-
-    private void printArrays() {
-        mineArray.printArray();
-        totalArray.printArray();
     }
 
     private void setupTotalsArray(MineArray mineArray) {
@@ -210,9 +204,6 @@ public class GameScreen extends AppCompatActivity {
         mineCount = preferences.getInt(SHAREDPREF_ITEM_MINECOUNT, 6);
         highScore = preferences.getInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+mineCount, 100);
         startMinecount = mineCount;
-        Log.i("THIS", "Done loading");
-        Log.i("THIS", "Cols: " + cols + " and rows: " + rows + " and mineCount: " + mineCount);
-
     }
 
     private void setupMineArray() {

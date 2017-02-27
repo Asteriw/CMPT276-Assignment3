@@ -11,8 +11,14 @@
     <string name="reset_progress">Reset Progress</string>
     <string name="back_options">Back</string>
     <string name="save_options">Save Options</string>
+    <string name="OK">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="resetConfirmation">Are you sure you want to reset progress?</string>
+    <string name="win_nohighscore">Congratulations! You won!</string>
     <string name="highscore">Highscore:</string>
     <string name="remote_defusers_used">Area Scans Used:</string>
+    <string name="highscore_none">None</string>
     <string name="about_the_game">About the Game</string>
     <string name="link_text"><b>About the Authors:</b> This game was made by two SFU students,
         namely, the bearded man Paul Allan, and the small man Kenney Wu. The game was developed for our

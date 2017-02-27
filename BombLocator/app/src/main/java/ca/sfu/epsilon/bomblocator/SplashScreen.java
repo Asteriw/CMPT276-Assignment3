@@ -33,7 +33,4 @@ public class SplashScreen extends AppCompatActivity {
                 }
             });
     }
-
-    //SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
-
 }

@@ -76,9 +76,9 @@ public class SettingsScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(SettingsScreen.this)
-                        .setMessage("Are you sure you want to reset progress?")
+                        .setMessage(R.string.resetConfirmation)
                         .setCancelable(true)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 highScore = 100;
                                 SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
@@ -96,7 +96,7 @@ public class SettingsScreen extends AppCompatActivity {
                                 SettingsScreen.this.finish();
                             }
                         })
-                        .setNegativeButton("No", null)
+                        .setNegativeButton(R.string.no, null)
                         .show();
             }
         });
@@ -133,11 +133,8 @@ public class SettingsScreen extends AppCompatActivity {
         public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
             if (initialsize == 0) {
                 initialsize++;
-                //return;
             }
             int selectedSettingNum = parent.getSelectedItemPosition();
-            String selectedSettingName = parent.getItemAtPosition(position).toString();
-            Log.i("Settings", "Size number: " + selectedSettingNum + " is: " + selectedSettingName + ".");
             if (selectedSettingNum == 0) {
                 sizeSpinner = 0;
                 width = 6;
@@ -153,7 +150,6 @@ public class SettingsScreen extends AppCompatActivity {
                 width = 15;
                 height = 6;
             }
-            Log.i("Settings", "Size and Mines are: " + sizeSpinner + " and " + minesSpinner);
         }
 
         public void onNothingSelected (AdapterView<?> parent) {
@@ -165,11 +161,9 @@ public class SettingsScreen extends AppCompatActivity {
         public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
             if (initialmines == 0) {
                 initialmines++;
-                //return;
             }
             int selectedSettingNum = parent.getSelectedItemPosition();
             String selectedSettingName = parent.getItemAtPosition(position).toString();
-            Log.i("Settings", "Mines number: " + selectedSettingNum + " is: " + selectedSettingName + ".");
             if (selectedSettingNum == 0) {
                 minesSpinner = 0;
                 minesVal = 6;
@@ -186,7 +180,6 @@ public class SettingsScreen extends AppCompatActivity {
                 minesSpinner = 3;
                 minesVal = 20;
             }
-            Log.i("Settings", "Size and Mines are: " + sizeSpinner + " and " + minesSpinner);
         }
 
         public void onNothingSelected (AdapterView<?> parent) {
