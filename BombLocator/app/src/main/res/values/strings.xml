@@ -11,7 +11,7 @@
     <string name="reset_progress">Reset Progress</string>
     <string name="back_options">Back</string>
     <string name="save_options">Save Options</string>
-    <string name="win_highscore">Congratulations! New high score!</string>
+    <string name="win_highscore">Congratulations!\nNew high score!</string>
     <string name="OK">OK</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>

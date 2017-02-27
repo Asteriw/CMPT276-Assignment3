@@ -24,7 +24,7 @@
         android:layout_marginTop="25dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
+        android:textColor="@color/offBlack"
         android:elevation="5dp"
         tools:elevation="5dp" />
 
@@ -36,7 +36,7 @@
         android:layout_centerVertical="true"
         android:id="@+id/imageView"
         android:adjustViewBounds="false"
-        android:alpha="1"
+        android:alpha="0.8"
         android:elevation="0dp"
         tools:elevation="0dp" />
 </RelativeLayout>

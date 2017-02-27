@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
-import android.preference.Preference;
 import android.support.v7.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -152,9 +150,9 @@ public class GameScreen extends AppCompatActivity {
                 clickedArray.setValue(row, col, 1);
                 updateButtonText(row, col, button);
                 if (Build.VERSION.SDK_INT == 23){
-                    button.setTextColor(getColor(R.color.offBlack));
+                    button.setTextColor(getColor(R.color.offWhite));
                 } else {
-                    button.setTextColor(getResources().getColor(R.color.offBlack));
+                    button.setTextColor(getResources().getColor(R.color.offWhite));
                 }
             }
         }
