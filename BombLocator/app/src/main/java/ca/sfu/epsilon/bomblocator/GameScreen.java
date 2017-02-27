@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -142,7 +143,11 @@ public class GameScreen extends AppCompatActivity {
                 updateTextViews();
                 clickedArray.setValue(row, col, 1);
                 updateButtonText(row, col, button);
-                button.setTextColor(Color.parseColor("#DDDDDD"));
+                if (Build.VERSION.SDK_INT == 23){
+                    button.setTextColor(getColor(R.color.offBlack));
+                } else {
+                    button.setTextColor(getResources().getColor(R.color.offBlack));
+                }
             }
         }
     }
