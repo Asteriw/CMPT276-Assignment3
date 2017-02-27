@@ -39,4 +39,31 @@
         android:alpha="0.8"
         android:elevation="0dp"
         tools:elevation="0dp" />
+
+    <TextView
+        android:text="Made by: Kenney Wu and Paul Allen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/authornames"
+        android:textSize="16sp"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/bomb"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/imageView2"
+        android:elevation="1dp"
+        tools:elevation="1dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="false"
+        android:alpha="0.85"
+        android:scaleX="0.5"
+        android:scaleY="0.5" />
 </RelativeLayout>
