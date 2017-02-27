@@ -83,7 +83,15 @@ public class SettingsScreen extends AppCompatActivity {
                                 highScore = 100;
                                 SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
                                 SharedPreferences.Editor editor = preferences.edit();
-                                editor.putInt(SHAREDPREF_ITEM_HIGHSCORE, highScore);
+                                for (int i = 5; i<25; i=i+5){
+                                    if (i == 5){
+                                        editor.putInt(SHAREDPREF_ITEM_HIGHSCORE+4+6+6, 100);
+                                    } else {
+                                        editor.putInt(SHAREDPREF_ITEM_HIGHSCORE+4+6+i, 100);
+                                    }
+                                    editor.putInt(SHAREDPREF_ITEM_HIGHSCORE+5+10+i, 100);
+                                    editor.putInt(SHAREDPREF_ITEM_HIGHSCORE+6+15+i, 100);
+                                }
                                 editor.apply();
                                 SettingsScreen.this.finish();
                             }

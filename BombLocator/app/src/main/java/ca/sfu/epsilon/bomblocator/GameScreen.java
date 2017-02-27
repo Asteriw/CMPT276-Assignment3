@@ -1,6 +1,8 @@
 package ca.sfu.epsilon.bomblocator;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -33,6 +35,7 @@ public class GameScreen extends AppCompatActivity {
     ClickedArray clickedArray;
     Button[][] buttonArray;
 
+    int startMinecount;
     int scans;
     int highScore;
 
@@ -104,11 +107,29 @@ public class GameScreen extends AppCompatActivity {
             totalArray.populateTotalArray(mineArray);
             updateClickedText();
             clickedArray.setValue(row, col, 2);
-            if (mineCount == 1){//ends the game when all minesSpinner found
+            if (mineCount == 0){//ends the game when all mines found
                 if (scans < highScore) {
+                    TextView highScoreTV = (TextView) findViewById(R.id.scoreField);
+                    highScoreTV.setText(String.valueOf(scans));
+                    new AlertDialog.Builder(GameScreen.this)
+                            .setMessage("Congratulations! You set a new high score of " + scans + " for the "+ rows + "x" + cols + " grid with " + startMinecount + " mines!")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    GameScreen.this.finish();
+                                }
+                            })
+                            .show();
                     saveHighScore(scans);
+                } else {
+                    new AlertDialog.Builder(GameScreen.this)
+                            .setMessage("Congratulations! You won!")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    GameScreen.this.finish();
+                                }
+                            })
+                            .show();
                 }
-                finish();
             }
         } else {
             if (clickedArray.getValue(row, col) == 0){
@@ -129,7 +150,7 @@ public class GameScreen extends AppCompatActivity {
     private void saveHighScore(int highScore) {
         SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(SHAREDPREF_ITEM_HIGHSCORE, highScore);
+        editor.putInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+startMinecount, highScore);
         editor.apply();
     }
 
@@ -184,10 +205,11 @@ public class GameScreen extends AppCompatActivity {
 
     private void loadSettings(){
         SharedPreferences preferences = getSharedPreferences(SHAREDPREF_SET, MODE_PRIVATE);
-        highScore = preferences.getInt(SHAREDPREF_ITEM_HIGHSCORE, 100);
         cols = preferences.getInt(SHAREDPREF_ITEM_GRIDWIDTH, 6);
         rows = preferences.getInt(SHAREDPREF_ITEM_GRIDHEIGHT, 4);
         mineCount = preferences.getInt(SHAREDPREF_ITEM_MINECOUNT, 6);
+        highScore = preferences.getInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+mineCount, 100);
+        startMinecount = mineCount;
         Log.i("THIS", "Done loading");
         Log.i("THIS", "Cols: " + cols + " and rows: " + rows + " and mineCount: " + mineCount);
 
