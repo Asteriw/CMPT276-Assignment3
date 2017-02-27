@@ -225,7 +225,7 @@ public class GameScreen extends AppCompatActivity {
         rows = preferences.getInt(SHAREDPREF_ITEM_GRIDHEIGHT, 4);
         bombCount = preferences.getInt(SHAREDPREF_ITEM_BOMBCOUNT, 6);
         highScore = preferences.getInt(SHAREDPREF_ITEM_HIGHSCORE+rows+cols+bombCount, 100);
-        gamesPlayed = preferences.getInt(SHAREDPREF_ITEM_GAMESPLAYED, 100);
+        gamesPlayed = preferences.getInt(SHAREDPREF_ITEM_GAMESPLAYED, 0);
         startBombCount = bombCount;
     }
 
