@@ -111,8 +111,9 @@ public class GameScreen extends AppCompatActivity {
                 if (scans < highScore) {
                     TextView highScoreTV = (TextView) findViewById(R.id.scoreField);
                     highScoreTV.setText(String.valueOf(scans));
+                    String victoryMessage = getString(R.string.win_highscore, scans, rows, cols, startMinecount);
                     new AlertDialog.Builder(GameScreen.this)
-                            .setMessage("Congratulations! You set a new high score of " + scans + " for the " + rows + "x" + cols + " grid with " + startMinecount + " bombs!")
+                            .setMessage(victoryMessage)
                             .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     GameScreen.this.finish();
