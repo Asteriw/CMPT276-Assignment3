@@ -32,9 +32,9 @@
         <item>6 x 15</item>
     </string-array>
     <string-array name="mine_amounts">
-        <item>6 mines</item>
-        <item>10 mines</item>
-        <item>15 mines</item>
-        <item>20 mines</item>
+        <item>6 bombs</item>
+        <item>10 bombs</item>
+        <item>15 bombs</item>
+        <item>20 bombs</item>
     </string-array>
 </resources>

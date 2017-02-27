@@ -133,7 +133,7 @@ public class SettingsScreen extends AppCompatActivity {
         public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
             if (initialsize == 0) {
                 initialsize++;
-                return;
+                //return;
             }
             int selectedSettingNum = parent.getSelectedItemPosition();
             String selectedSettingName = parent.getItemAtPosition(position).toString();
@@ -165,7 +165,7 @@ public class SettingsScreen extends AppCompatActivity {
         public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
             if (initialmines == 0) {
                 initialmines++;
-                return;
+                //return;
             }
             int selectedSettingNum = parent.getSelectedItemPosition();
             String selectedSettingName = parent.getItemAtPosition(position).toString();
